@@ -60,6 +60,21 @@ double Sphere::intersection(Ray& ray)
 	{
 		double t1 = ((-B + sqrt(delta)) / (2 * A));
 		double t2 = ((-B - sqrt(delta)) / (2 * A));
-		return (t1 <= t2) ? t1 : t2;
+		if(t1 >= 0 && t2 >= 0)
+		{
+			return (t1 <= t2) ? t1 : t2;
+		}
+		else if(t1 >= 0)
+		{
+			return t1;
+		}
+		else if(t2 >= 0)
+		{
+			return t2;
+		}
+		else
+		{
+			return -1.0;
+		}
 	}
 }
