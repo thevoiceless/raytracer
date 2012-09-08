@@ -33,15 +33,6 @@ vector<int> read_input_file(vector<Primitive*> primitives)
 	ifstream inFile("input.txt");
 	assert(inFile);
 
-	/*double viewpoint[3];
-	double screen_lower_left_corner[3];
-	double screen_horizontal_vector[3];
-	double screen_vertical_vector[3];
-	double light_source[3];
-	double light_intensity;
-	double ambient_light_intensity, resolution_x, resolution_y;
-	int number_of_primitives;*/
-
 	inFile >> resolution_x >> resolution_y;
 	inFile >> viewpoint[0] >> viewpoint[1] >> viewpoint[2];
 	inFile >> screen_lower_left_corner[0] >> screen_lower_left_corner[1] >> screen_lower_left_corner[2];
@@ -77,8 +68,8 @@ vector<int> read_input_file(vector<Primitive*> primitives)
 				inFile >> k_ambient[0] >> k_ambient[1] >> k_ambient[2];
 				inFile >> k_specular >> n_specular;
 
-				// add the sphere to your datastructures (primitive list, sphere list or such) here
-
+				primitives.push_back(new Sphere(Vector(center[0], center[1], center[2]), radius, Material(k_diffuse[0], k_diffuse[1], k_diffuse[2], k_ambient[0], k_ambient[1], k_ambient[2], k_specular, n_specular)));
+				cout << "Added sphere" << endl;
 			}
 			break;
 		case 'T':

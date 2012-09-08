@@ -1,6 +1,6 @@
 OPT = -O2
-OBJS = Image.o IOstuff.o Vector.o raytrace.o
-CPPS = Image.cpp IOstuff.cpp Vector.cpp  raytrace.cpp
+OBJS = Image.o Vector.o Sphere.o IOstuff.o raytrace.o
+CPPS = Image.cpp Vector.cpp Sphere.cpp IOstuff.cpp raytrace.cpp
 
 all: raytrace
 

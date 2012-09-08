@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cmath>
 #include <vector>
+#include <iostream>
 #include "Image.h"
 #include "Primitive.h"
 #include "Sphere.h"

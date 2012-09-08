@@ -1,13 +1,17 @@
 #include "Vector.h"
 #include "Material.h"
+#include "Ray.h"
+#include "Primitive.h"
 #pragma once
 
 class Sphere: public Primitive
 {
-  public:
-    Vector center;
-    double radius;
-    Material m;
-    
-    double intersection(Ray& r);
+public:
+	Vector center;
+	double radius;
+	Material material;
+
+	Sphere(Vector c, double r, Material m) : center(c), radius(r), material(m) {}
+
+	double intersection(Ray& r);
 };
