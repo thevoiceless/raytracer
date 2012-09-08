@@ -16,6 +16,13 @@ Vector Vector::addTo(Vector v2)
 		(z + v2.z));
 }
 
+Vector Vector::subtract(Vector v2)
+{
+	return Vector((v2.x - x),
+		(v2.y - y),
+		(v2.z - z));
+}
+
 double Vector::dotWith(Vector v2)
 {
 	return ((x * v2.x)

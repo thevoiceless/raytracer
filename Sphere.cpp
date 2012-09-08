@@ -26,7 +26,40 @@
 
 // The intersection point is given by p∗ = o + t∗ d
 
-double Sphere::intersection(Ray& r)
+double Sphere::intersection(Ray& ray)
 {
-	return -1.0;
+	// A = |d|^2
+	double A = pow(ray.direction.magnitude(), 2);
+	// B = 2co · d
+	double B = 2.0 * ((ray.origin.subtract(center)).dotWith(ray.direction));
+	// C = |co|^2 − r^2
+	double C = pow((ray.origin.subtract(center)).magnitude(), 2) - pow(radius, 2);
+	// ∆ = B^2 − 4AC
+	double delta = pow(B, 2) - (4 * A * C);
+	
+	// If ∆ < 0, no solution exists
+	if(delta < 0)
+	{
+		return -1.0;
+	}
+	// If ∆ = 0, there is only one solution, t = −B/(2A)
+	else if(delata == 0)
+	{
+		double t = -(B / (2 * A));
+		if(t < 0)
+		{
+			return -1.0;
+		}
+		else
+		{
+			return t;
+		}
+	}
+	// If ∆ > 0, there are two solutions, t± = (−B ± √∆)/(2A)
+	else
+	{
+		double t1 = ((-B + sqrt(delta)) / (2 * A));
+		double t2 = ((-B - sqrt(delta)) / (2 * A));
+		return (t1 <= t2) ? t1 : t2;
+	}
 }
