@@ -29,9 +29,12 @@ unsigned char clampnround(double x)
 
 vector<int> read_input_file(vector<Primitive*> primitives)
 {
-	vector<int> resolution;
 	ifstream inFile("input.txt");
 	assert(inFile);
+
+	vector<int> resolution;
+	int numSpheres = 0;
+	int numTriangles = 0;
 
 	inFile >> resolution_x >> resolution_y;
 	inFile >> viewpoint[0] >> viewpoint[1] >> viewpoint[2];
@@ -69,7 +72,7 @@ vector<int> read_input_file(vector<Primitive*> primitives)
 				inFile >> k_specular >> n_specular;
 
 				primitives.push_back(new Sphere(Vector(center[0], center[1], center[2]), radius, Material(k_diffuse[0], k_diffuse[1], k_diffuse[2], k_ambient[0], k_ambient[1], k_ambient[2], k_specular, n_specular)));
-				cout << "Added sphere" << endl;
+				numSpheres++;
 			}
 			break;
 		case 'T':
@@ -90,7 +93,8 @@ vector<int> read_input_file(vector<Primitive*> primitives)
 				inFile >> k_ambient[0] >> k_ambient[1] >> k_ambient[2];
 				inFile >> k_specular >> n_specular; 	    
 
-				// add the triangle to your datastructure (primitive list, sphere list or such) here
+				primitives.push_back(new Triangle(Vector(a1[0], a1[1], a1[2]), Vector(a2[0], a2[1], a2[2]), Vector(a3[0], a3[1], a3[2]), Material(k_diffuse[0], k_diffuse[1], k_diffuse[2], k_ambient[0], k_ambient[1], k_ambient[2], k_specular, n_specular)));
+				numTriangles++;
 			}
 			break;
 		default:
@@ -98,6 +102,9 @@ vector<int> read_input_file(vector<Primitive*> primitives)
 		}
 	}
 	inFile.close();
+
+	cout << "Added " << numSpheres << " sphere(s)" << endl;
+	cout << "Added " << numTriangles << " triangle(s)" << endl;
 
 	return resolution;
 }
