@@ -4,14 +4,13 @@ Project 1: Ray Tracing
 CSCI 441
 */
 
+#define MAINFILE
+
 #include <iostream>
 #include "RGB.h"
 #include "Image.h"
 #include "IOstuff.h"
 #include "Material.h"
-#include "Sphere.h"
-#include "Triangle.h"
-#include "Vector.h"
 
 using namespace std;
 

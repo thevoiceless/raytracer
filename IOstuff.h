@@ -5,6 +5,10 @@
 #include <vector>
 #include "Image.h"
 #include "Primitive.h"
+#include "Sphere.h"
+#include "Triangle.h"
+#include "Vector.h"
+#include "globals.h"
 #pragma once
 
 using namespace std;
