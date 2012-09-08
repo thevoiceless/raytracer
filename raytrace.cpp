@@ -8,12 +8,19 @@ CSCI 441
 #include "RGB.h"
 #include "Image.h"
 #include "IOstuff.h"
+#include "Primitive.h"
+#include "Material.h"
+#include "Sphere.h"
+#include "Triangle.h"
+#include "Vector.h"
 
 using namespace std;
 
 int main()
 {
 	int x, y;
+
+	vector<Primitive*> primitives;
 
 	vector<int> resolution = read_input_file();
 	int resolution_x = resolution.front();
