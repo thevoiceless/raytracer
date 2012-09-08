@@ -8,7 +8,6 @@ CSCI 441
 #include "RGB.h"
 #include "Image.h"
 #include "IOstuff.h"
-#include "Primitive.h"
 #include "Material.h"
 #include "Sphere.h"
 #include "Triangle.h"
@@ -22,7 +21,7 @@ int main()
 
 	vector<Primitive*> primitives;
 
-	vector<int> resolution = read_input_file();
+	vector<int> resolution = read_input_file(primitives);
 	int resolution_x = resolution.front();
 	int resolution_y = resolution.back();
 
