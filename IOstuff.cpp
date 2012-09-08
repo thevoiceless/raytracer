@@ -27,9 +27,10 @@ unsigned char clampnround(double x)
 	return (unsigned char)floor(x + .5);
 }
 
-vector<int> read_input_file(vector<Primitive*> primitives)
+vector<int> read_input_file(string filename, vector<Primitive*> primitives)
 {
-	ifstream inFile("input.txt");
+	//ifstream inFile("input.txt");
+	ifstream inFile(filename.c_str());
 	assert(inFile);
 
 	vector<int> resolution;

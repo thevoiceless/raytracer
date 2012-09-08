@@ -30,3 +30,8 @@ Vector Vector::crossWith(Vector v2)
 	double zhat = ((x * v2.y) - (y * v2.x));
 	return Vector(xhat, yhat, zhat);
 }
+
+double Vector::magnitude()
+{
+	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+}

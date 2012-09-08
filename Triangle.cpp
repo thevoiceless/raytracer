@@ -2,5 +2,5 @@
 
 double Triangle::intersection(Ray& r)
 {
-	return 0.0;
+	return -1.0;
 }

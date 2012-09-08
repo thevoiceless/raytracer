@@ -1,3 +1,4 @@
+#include <cmath>
 #pragma once
 
 class Vector
@@ -11,4 +12,5 @@ public:
 	Vector addTo(Vector v2);
 	double dotWith(Vector v2);
 	Vector crossWith(Vector v2);
+	double magnitude();
 };
