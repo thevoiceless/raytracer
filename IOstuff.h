@@ -15,6 +15,6 @@
 using namespace std;
 
 //vector<int> read_input_file(string filename, vector<Primitive*> primitives);
-void read_input_file(string filename, vector<Primitive*> primitives);
+void read_input_file(string filename, vector<Primitive*>& primitives);
 void save_to_ppm_file(Image& theImage, string filename);
 unsigned char clampnround(double x);

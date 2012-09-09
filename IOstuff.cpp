@@ -28,7 +28,7 @@ unsigned char clampnround(double x)
 }
 
 //vector<int> read_input_file(string filename, vector<Primitive*> primitives)
-void read_input_file(string filename, vector<Primitive*> primitives)
+void read_input_file(string filename, vector<Primitive*>& primitives)
 {
 	//ifstream inFile("input.txt");
 	ifstream inFile(filename.c_str());
