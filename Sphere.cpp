@@ -60,6 +60,7 @@ double Sphere::intersection(Ray& ray)
 	{
 		double t1 = ((-B + sqrt(delta)) / (2 * A));
 		double t2 = ((-B - sqrt(delta)) / (2 * A));
+		// If all solutions t are negative, we have no intersection points
 		if(t1 >= 0 && t2 >= 0)
 		{
 			return (t1 <= t2) ? t1 : t2;

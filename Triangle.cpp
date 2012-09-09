@@ -34,15 +34,15 @@
 //         point is p.
 
 // Step 1: Intersect the ray and the triangle’s plane
-// Determine the equation of the triangle’s plane
-// Compute the triangle’s normal n := a1 a2 × a1 a3
-// p is in the triangle’s plane if and only if a1 p · n = 0, or p · n = a1 · n
-// Substitute p := o + t d and solve:
+// To determine the equation of the triangle’s plane, compute the triangle’s
+// normal n := a1 a2 × a1 a3
+// p is in the triangle’s plane if and only if a1 p · n = 0 or p · n = a1 · n,
+// so substitute p := o + t d and solve:
 //                              (a1 − o) · n
 // (o + t d) · n = a1 · n ⇒ t = -------------
-//                                  d ·n
+//                                  d · n
 // Report no intersection if t < 0
-// If t >= 0, the ray-plane intersection point is p = o + t d.
+// If t >= 0, the ray-plane intersection point is p = o + t d
 
 // Step 2: Test if the intersection point is inside the triangle
 // Compute the cross products v1 := pa1 × pa2, v2 := pa2 × pa3,
@@ -53,5 +53,20 @@
 
 double Triangle::intersection(Ray& ray)
 {
+	// n := a1 a2 × a1 a3
+	Vector n = a2.subtract(a1).crossWith(a3.subtract(a1));
+	// Solve for t
+	double t = (a1.subtract(ray.origin).dotWith(n)) / (ray.direction.dotWith(n));
+
+	// Report no intersection if t < 0
+	if(t < 0)
+	{
+
+	}
+	// If t >= 0, the ray-plane intersection point is p = o + t d
+	else
+	{
+
+	}
 	return -1.0;
 }
