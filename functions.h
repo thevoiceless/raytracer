@@ -6,10 +6,10 @@
 using namespace std;
 
 // Compute closest intersection point with the given ray
-pair<double, int> closestIntersection(Ray& r, vector<Primitive*> primitives)
+pair<double, int> closestIntersection(Ray& r, vector<Primitive*>& primitives)
 {
 	double min_t = -1.0;
-	int primitive_id;
+	int primitive_id = 0;
 	for(int i = 0; i < primitives.size(); ++i)
 	{
 		double t = primitives.at(i)->intersection(r);
