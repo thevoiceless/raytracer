@@ -67,7 +67,7 @@ double Triangle::intersection(Ray& ray)
 	// If t >= 0, the ray-plane intersection point is p = o + t d
 	else
 	{
-		Vector p = ray.origin.addTo(d.scaleBy(t));
+		Vector p = ray.origin.addTo(ray.direction.scaleBy(t));
 		// Compute the cross products v1 := pa1 × pa2, v2 := pa2 × pa3, and v3 := pa3 × pa1
 		Vector v1 = p.towards(a1).crossWith(p.towards(a2));
 		Vector v2 = p.towards(a2).crossWith(p.towards(a3));

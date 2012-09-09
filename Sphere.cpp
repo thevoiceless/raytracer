@@ -45,7 +45,7 @@ double Sphere::intersection(Ray& ray)
 		return -1.0;
 	}
 	// If ∆ = 0, there is only one solution, t = −B/(2A)
-	else if(delata == 0)
+	else if(delta == 0)
 	{
 		double t = -(B / (2 * A));
 		if(t < 0)

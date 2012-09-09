@@ -10,6 +10,7 @@ CSCI 441
 #include "Image.h"
 #include "IOstuff.h"
 #include "Material.h"
+#include "functions.h"
 
 using namespace std;
 
