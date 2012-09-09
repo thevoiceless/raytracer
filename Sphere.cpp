@@ -31,9 +31,11 @@ double Sphere::intersection(Ray& ray)
 	// A = |d|^2
 	double A = pow(ray.direction.magnitude(), 2);
 	// B = 2co · d
-	double B = 2.0 * ((ray.origin.subtract(center)).dotWith(ray.direction));
+	//double B = 2.0 * ((ray.origin.subtract(center)).dotWith(ray.direction));
+	double B = 2.0 * ((center.towards(ray.origin)).dotWith(ray.direction));
 	// C = |co|^2 − r^2
-	double C = pow((ray.origin.subtract(center)).magnitude(), 2) - pow(radius, 2);
+	//double C = pow((ray.origin.subtract(center)).magnitude(), 2) - pow(radius, 2);
+	double C = pow((center.towards(ray.origin)).magnitude(), 2) - pow(radius, 2);
 	// ∆ = B^2 − 4AC
 	double delta = pow(B, 2) - (4 * A * C);
 	

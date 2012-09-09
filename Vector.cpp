@@ -16,11 +16,25 @@ Vector Vector::addTo(Vector v2)
 		(z + v2.z));
 }
 
-Vector Vector::subtract(Vector v2)
+Vector Vector::towards(Vector v2)
 {
 	return Vector((v2.x - x),
 		(v2.y - y),
 		(v2.z - z));
+}
+
+Vector Vector::minus(Vector v2)
+{
+	return Vector((x - v2.x),
+		(y - v2.y),
+		(z - v2.z));
+}
+
+Vector Vector::scaleBy(double t)
+{
+	return Vector((t * x),
+		(t * y),
+		(t * z));
 }
 
 double Vector::dotWith(Vector v2)

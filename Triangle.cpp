@@ -47,26 +47,40 @@
 // Step 2: Test if the intersection point is inside the triangle
 // Compute the cross products v1 := pa1 × pa2, v2 := pa2 × pa3,
 // and v3 := pa3 × pa1
-// p is inside the triangle if and only if v1 , v2 and v3 point in the
+// p is inside the triangle if and only if v1, v2, and v3 point in the
 // same direction, i.e. the three dot products v1 · v2, v2 · v3, and
 // v3 · v1 are all nonnegative
 
 double Triangle::intersection(Ray& ray)
 {
 	// n := a1 a2 × a1 a3
-	Vector n = a2.subtract(a1).crossWith(a3.subtract(a1));
+	//Vector n = a2.subtract(a1).crossWith(a3.subtract(a1));
+	Vector n = a1.towards(a2).crossWith(a1.towards(a3));
 	// Solve for t
-	double t = (a1.subtract(ray.origin).dotWith(n)) / (ray.direction.dotWith(n));
+	double t = (a1.minus(ray.origin).dotWith(n)) / (ray.direction.dotWith(n));
 
 	// Report no intersection if t < 0
 	if(t < 0)
 	{
-
+		return -1.0;
 	}
 	// If t >= 0, the ray-plane intersection point is p = o + t d
 	else
 	{
-
+		Vector p = ray.origin.addTo(d.scaleBy(t));
+		// Compute the cross products v1 := pa1 × pa2, v2 := pa2 × pa3, and v3 := pa3 × pa1
+		Vector v1 = p.towards(a1).crossWith(p.towards(a2));
+		Vector v2 = p.towards(a2).crossWith(p.towards(a3));
+		Vector v3 = p.towards(a3).crossWith(p.towards(a1));
+		// p is inside the triangle if and only if v1, v2, and v3 point in thesame direction
+		// The three dot products v1 · v2, v2 · v3, and v3 · v1 must all be nonnegative
+		if(v1.dotWith(v2) >= 0 && v2.dotWith(v3) >= 0 && v3.dotWith(v1) >= 0)
+		{
+			return t;
+		}
+		else
+		{
+			return -1.0;
+		}
 	}
-	return -1.0;
 }
