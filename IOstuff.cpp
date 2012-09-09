@@ -27,15 +27,22 @@ unsigned char clampnround(double x)
 	return (unsigned char)floor(x + .5);
 }
 
-vector<int> read_input_file(string filename, vector<Primitive*> primitives)
+//vector<int> read_input_file(string filename, vector<Primitive*> primitives)
+void read_input_file(string filename, vector<Primitive*> primitives)
 {
 	//ifstream inFile("input.txt");
 	ifstream inFile(filename.c_str());
 	assert(inFile);
 
-	vector<int> resolution;
+	//vector<int> resolution;
 	int numSpheres = 0;
 	int numTriangles = 0;
+
+	double viewpoint[3];
+	double screen_lower_left_corner[3];
+	double screen_horizontal_vector[3];
+	double screen_vertical_vector[3];
+	double light_source[3];
 
 	inFile >> resolution_x >> resolution_y;
 	inFile >> viewpoint[0] >> viewpoint[1] >> viewpoint[2];
@@ -47,8 +54,15 @@ vector<int> read_input_file(string filename, vector<Primitive*> primitives)
 	inFile >> ambient_light_intensity;
 	inFile >> number_of_primitives;
 
-	resolution.push_back(resolution_x);
-	resolution.push_back(resolution_y);
+	viewpt = Vector(viewpoint[0], viewpoint[1], viewpoint[2]);
+	screenLowerLeftCorner = Vector(screen_lower_left_corner[0], screen_lower_left_corner[1], screen_lower_left_corner[2]);
+	screenHorizVector = Vector(screen_horizontal_vector[0], screen_horizontal_vector[1], screen_horizontal_vector[2]);
+	screenVertVector = Vector(screen_vertical_vector[0], screen_vertical_vector[1], screen_vertical_vector[2]);
+	lightSource = Vector(light_source[0], light_source[1], light_source[2]);
+
+
+	//resolution.push_back(resolution_x);
+	//resolution.push_back(resolution_y);
 
 	for(int i = 0; i < number_of_primitives; i++)
 	{
@@ -107,5 +121,5 @@ vector<int> read_input_file(string filename, vector<Primitive*> primitives)
 	cout << "Added " << numSpheres << " sphere(s)" << endl;
 	cout << "Added " << numTriangles << " triangle(s)" << endl;
 
-	return resolution;
+	//return resolution;
 }

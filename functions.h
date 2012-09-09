@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Compute closest intersection point with the given ray
 pair<double, int> closestIntersection(Ray& r, vector<Primitive*> primitives)
 {
 	double min_t = -1.0;
@@ -19,4 +20,13 @@ pair<double, int> closestIntersection(Ray& r, vector<Primitive*> primitives)
 		}
 	}
 	return make_pair(min_t, primitive_id);
+}
+
+// Compute eye ray for a pixel (i, j)
+// Origin: The viewpoint
+// Direction: ((Lower left corner + (((i + 0.5) / (x resolution)) * Horizontal vector) + (((j + 0.5) / (y resolution)) * Vertical vector)) - Viewpoint)
+Ray eyeRay(int i, int j)
+{
+	return Ray(viewpt, 
+		screenLowerLeftCorner.addTo(screenHorizVector.scaleBy((i + 0.5) / resolution_x).addTo(screenVertVector.scaleBy((j + 0.5) / resolution_y))));
 }

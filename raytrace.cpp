@@ -22,16 +22,17 @@ int main()
 	// Create vector of pointers to Primitives
 	vector<Primitive*> primitives;
 	// Load info from the input file
-	vector<int> resolution = read_input_file(filename, primitives);
+	//vector<int> resolution = read_input_file(filename, primitives);
+	read_input_file(filename, primitives);
 
-	Vector viewpt(viewpoint[0], viewpoint[1], viewpoint[2]);
-	Vector screenLowerLeftCorner(screen_lower_left_corner[0], screen_lower_left_corner[1], screen_lower_left_corner[2]);
-	Vector screenHorizVector(screen_horizontal_vector[0], screen_horizontal_vector[1], screen_horizontal_vector[2]);
-	Vector screenVertVector(screen_vertical_vector[0], screen_vertical_vector[1], screen_vertical_vector[2]);
-	Vector lightSource(light_source[0], light_source[1], light_source[2]);
+	//Vector viewpt(viewpoint[0], viewpoint[1], viewpoint[2]);
+	//Vector screenLowerLeftCorner(screen_lower_left_corner[0], screen_lower_left_corner[1], screen_lower_left_corner[2]);
+	//Vector screenHorizVector(screen_horizontal_vector[0], screen_horizontal_vector[1], screen_horizontal_vector[2]);
+	//Vector screenVertVector(screen_vertical_vector[0], screen_vertical_vector[1], screen_vertical_vector[2]);
+	//Vector lightSource(light_source[0], light_source[1], light_source[2]);
 
-	int resolution_x = resolution.front();
-	int resolution_y = resolution.back();
+	//int resolution_x = resolution.front();
+	//int resolution_y = resolution.back();
 
 	Image img(resolution_x, resolution_y);
 	for(int x = 0; x < resolution_x; x++)
