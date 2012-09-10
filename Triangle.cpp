@@ -54,12 +54,10 @@
 double Triangle::intersection(Ray& ray)
 {
 	// n := a1 a2 × a1 a3
-	//Vector n = a2.subtract(a1).crossWith(a3.subtract(a1));
 	Vector n = a1.towards(a2).crossWith(a1.towards(a3));
-	
 	// Solve for t
 	double t = (a1.minus(ray.origin).dotWith(n)) / (ray.direction.dotWith(n));
-
+	
 	// Report no intersection if t < 0
 	if(t < 0)
 	{

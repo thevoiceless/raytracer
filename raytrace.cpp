@@ -34,27 +34,16 @@ int main()
 	read_input_file(filename, primitives);
 
 	Image img(resolution_x, resolution_y);
-	cout << "\nStarting loops..." << endl;
 	for(int x = 0; x < resolution_x; x++)
 		for(int y = 0; y < resolution_y; y++)
 		{
-			//cout << "(" << x << ", " << y << ")" << endl;
-			//if(x == 128 && y == 128) exit(0);
-
 			double t = -1.0;
 			int primitive_id;
 			Ray r = eyeRay(x, y);
 
-			//cout << "Eye ray origin: " << r.origin.toString() << endl;
-			//cout << "Eye ray direction: " << r.direction.toString() << endl;
-			
 			pair<double, int> result = closestIntersection(r, primitives);
 			t = result.first;
 			primitive_id = result.second;
-
-			//cout << endl;
-			//cout << "Result t: " << t << endl;
-			//cout << "Result id: " << primitive_id << endl;
 
 			RGB &pix = img.pixel(x, y);
 
@@ -65,21 +54,19 @@ int main()
 				pix.g = 0.0;
 				pix.b = 0.0;
 			}
+			// Intersection
 			else
 			{
-				//cout << "Intersection" << endl;
 				Sphere* sphere = dynamic_cast<Sphere*>((primitives.at(primitive_id)));
 				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
 				if(sphere)
 				{
-					//cout << "Intersection with spehere" << endl;
 					pix.r = sphere->material.k_diff_R * light_intensity;
 					pix.g = sphere->material.k_diff_G * light_intensity;
 					pix.b = sphere->material.k_diff_B * light_intensity;
 				}
 				else if(triangle)
 				{
-					//cout << "Intersection with tirangle" << endl;
 					pix.r = triangle->material.k_diff_R * light_intensity;
 					pix.g = triangle->material.k_diff_G * light_intensity;
 					pix.b = triangle->material.k_diff_B * light_intensity;
