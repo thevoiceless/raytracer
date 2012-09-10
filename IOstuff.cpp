@@ -63,6 +63,9 @@ void read_input_file(string& filename, vector<Primitive*>& primitives)
 	lightSource = Vector(light_source[0], light_source[1], light_source[2]);
 	cout << "Light source: " << lightSource.toString() << endl;
 
+	screenLowerLeftCorner = screenLowerLeftCorner.addTo(screenVertVector);
+	screenVertVector = screenVertVector.scaleBy(-1.0);
+
 	for(int i = 0; i < number_of_primitives; i++)
 	{
 		char primitive_type;
