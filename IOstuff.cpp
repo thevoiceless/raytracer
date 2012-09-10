@@ -61,7 +61,9 @@ void read_input_file(char* filename, vector<Primitive*>& primitives)
 	screenVertVector = Vector(screen_vertical_vector[0], screen_vertical_vector[1], screen_vertical_vector[2]);
 	lightSource = Vector(light_source[0], light_source[1], light_source[2]);
 
+	// Add the vertical screen vector to the lower left corner to make it actually appear in the lower left
 	screenLowerLeftCorner = screenLowerLeftCorner.addTo(screenVertVector);
+	// Invert the vertical screen vector to match point "up" from the new lower left corner
 	screenVertVector = screenVertVector.scaleBy(-1.0);
 
 	for(int i = 0; i < number_of_primitives; i++)
@@ -90,8 +92,8 @@ void read_input_file(char* filename, vector<Primitive*>& primitives)
 				numSpheres++;
 			}
 			break;
-		case 'T':
 		case 't':
+		case 'T':
 			{
 				double a1[3];
 				double a2[3];
