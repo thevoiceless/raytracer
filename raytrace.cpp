@@ -27,19 +27,20 @@ int main(int argc, char *argv[])
 
 	// Create vector of pointers to Primitives
 	vector<Primitive*> primitives;
+	// Input file
+	string filename = "input.txt";
 
 	// User did not enter a filename as a command-line argument
 	if(argc != 2)
 	{
 		// Load info from "input.txt"
-		string filename = "input.txt";
-		char* f = (char*)filename.c_str();
-		read_input_file(f, primitives);
+		read_input_file((char*)filename.c_str(), primitives);
 	}
 	// User passed a filename as a command-line argument
 	else
 	{
 		// Load info from the named input file
+		filename = argv[1];
 		read_input_file(argv[1], primitives);
 	}
 
@@ -91,6 +92,11 @@ int main(int argc, char *argv[])
 
 	// Save the image
 	save_to_ppm_file(img, "output.ppm");
+
+	// Only used to make the output filename match the name of the input file
+	//string outFileName = filename.substr(0, filename.length() - 4);
+	//outFileName.append(".ppm");
+	//save_to_ppm_file(img, outFileName);
 
 	return 0;
 }
