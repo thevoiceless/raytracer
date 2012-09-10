@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Vector::Vector(void)
+Vector::Vector()
 {
 	x = 0;
 	y = 0;
@@ -55,4 +55,11 @@ Vector Vector::crossWith(Vector v2)
 double Vector::magnitude()
 {
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+}
+
+string Vector::toString()
+{
+	stringstream ss;
+	ss << "(" << x << ", " << y << ", " << z << ")";
+	return ss.str();
 }

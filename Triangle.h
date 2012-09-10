@@ -1,3 +1,5 @@
+#include <sstream>
+#include <string>
 #include "Vector.h"
 #include "Material.h"
 #include "Ray.h"
@@ -13,4 +15,5 @@ public:
 	Triangle(Vector one, Vector two, Vector three, Material m) : a1(one), a2(two), a3(three), material(m) {}
 
 	double intersection(Ray& ray);
+	string toString();
 };

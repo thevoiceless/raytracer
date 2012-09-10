@@ -1,6 +1,7 @@
 OPT = -O2
-OBJS = Image.o Vector.o Sphere.o Triangle.o IOstuff.o raytrace.o
-CPPS = Image.cpp Vector.cpp Sphere.cpp Triangle.cpp IOstuff.cpp raytrace.cpp
+OBJS = Material.o Image.o Vector.o Sphere.o Triangle.o IOstuff.o raytrace.o
+CPPS = Material.cpp Image.cpp Vector.cpp Sphere.cpp Triangle.cpp IOstuff.cpp raytrace.cpp
+EXES = raytrace
 
 all: raytrace
 
@@ -11,6 +12,6 @@ objects: $(CPPS)
 	g++ -c $(CPPS)
 
 clean: 
-	rm raytrace
+	rm $(EXES)
 	rm $(OBJS)
 	rm *.ppm

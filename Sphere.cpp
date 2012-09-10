@@ -30,14 +30,19 @@ double Sphere::intersection(Ray& ray)
 {
 	// A = |d|^2
 	double A = pow(ray.direction.magnitude(), 2);
+	//cout << "A: " << A << endl;
 	// B = 2co · d
-	//double B = 2.0 * ((ray.origin.subtract(center)).dotWith(ray.direction));
 	double B = 2.0 * ((center.towards(ray.origin)).dotWith(ray.direction));
+	//cout << "Center of sphere towards ray origin: " << (center.towards(ray.origin)).toString() << endl;
+	//cout << "Ray direction: " << ray.direction.toString() << endl;
+	//cout << "co dotted with ray direction: " << ((center.towards(ray.origin)).dotWith(ray.direction)) << endl;
+	//cout << "B: " << B << endl;
 	// C = |co|^2 − r^2
-	//double C = pow((ray.origin.subtract(center)).magnitude(), 2) - pow(radius, 2);
 	double C = pow((center.towards(ray.origin)).magnitude(), 2) - pow(radius, 2);
+	//cout << "C: " << C << endl;
 	// ∆ = B^2 − 4AC
 	double delta = pow(B, 2) - (4 * A * C);
+	//cout << "Delta: " << delta << endl;
 	
 	// If ∆ < 0, no solution exists
 	if(delta < 0)
@@ -62,6 +67,9 @@ double Sphere::intersection(Ray& ray)
 	{
 		double t1 = ((-B + sqrt(delta)) / (2 * A));
 		double t2 = ((-B - sqrt(delta)) / (2 * A));
+		//cout << "Delta is positive" << endl;
+		//cout << "t1: " << t1 << endl;
+		//cout << "t2: " << t2 << endl;
 		// If all solutions t are negative, we have no intersection points
 		if(t1 >= 0 && t2 >= 0)
 		{
@@ -80,4 +88,13 @@ double Sphere::intersection(Ray& ray)
 			return -1.0;
 		}
 	}
+}
+
+string Sphere::toString()
+{
+	stringstream ss;
+	ss << "Center: " << center.toString() << endl;
+	ss << "Radius: " << radius << endl;
+	ss << "Material: " << material.toString() << endl;
+	return ss.str();
 }

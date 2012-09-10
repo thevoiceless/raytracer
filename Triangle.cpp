@@ -56,6 +56,7 @@ double Triangle::intersection(Ray& ray)
 	// n := a1 a2 × a1 a3
 	//Vector n = a2.subtract(a1).crossWith(a3.subtract(a1));
 	Vector n = a1.towards(a2).crossWith(a1.towards(a3));
+	
 	// Solve for t
 	double t = (a1.minus(ray.origin).dotWith(n)) / (ray.direction.dotWith(n));
 
@@ -83,4 +84,14 @@ double Triangle::intersection(Ray& ray)
 			return -1.0;
 		}
 	}
+}
+
+string Triangle::toString()
+{
+	stringstream ss;
+	ss << "Vertex 1: " << a1.toString() << endl;
+	ss << "Vertex 2: " << a2.toString() << endl;
+	ss << "Vertex 3: " << a3.toString() << endl;
+	ss << "Material: " << material.toString() << endl;
+	return ss.str();
 }

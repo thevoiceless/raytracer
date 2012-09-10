@@ -1,4 +1,5 @@
 #include <utility>
+#include <iostream>
 #include "Ray.h"
 #include "Primitive.h"
 #pragma once
@@ -27,6 +28,12 @@ pair<double, int> closestIntersection(Ray& r, vector<Primitive*>& primitives)
 // Direction: ((Lower left corner + (((i + 0.5) / (x resolution)) * Horizontal vector) + (((j + 0.5) / (y resolution)) * Vertical vector)) - Viewpoint)
 Ray eyeRay(int i, int j)
 {
+	// cout << "Ray from viewpoint: " << viewpt.toString() << endl;
+	// double scaleHorizFactor = ((i + 0.5) / resolution_x);
+	// Vector scaledHorizVector = screenHorizVector.scaleBy(scaleHorizFactor);
+	// double scaleVertFactor = ((j + 0.5) / resolution_y);
+	// Vector scaledVertVector = screenVertVector.scaleBy(scaleVertFactor);
+
 	return Ray(viewpt, 
-		screenLowerLeftCorner.addTo(screenHorizVector.scaleBy((i + 0.5) / resolution_x).addTo(screenVertVector.scaleBy((j + 0.5) / resolution_y))));
+		screenLowerLeftCorner.addTo(screenHorizVector.scaleBy((i + 0.5) / resolution_x).addTo(screenVertVector.scaleBy((j + 0.5) / resolution_y))).minus(viewpt));
 }

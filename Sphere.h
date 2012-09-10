@@ -1,3 +1,6 @@
+#include <sstream>
+#include <string>
+#include <iostream>
 #include "Vector.h"
 #include "Material.h"
 #include "Ray.h"
@@ -14,4 +17,5 @@ public:
 	Sphere(Vector c, double r, Material m) : center(c), radius(r), material(m) {}
 
 	double intersection(Ray& ray);
+	string toString();
 };

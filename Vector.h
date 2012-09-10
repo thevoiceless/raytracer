@@ -1,12 +1,16 @@
 #include <cmath>
+#include <sstream>
+#include <string>
 #pragma once
+
+using namespace std;
 
 class Vector
 {
 public:
 	double x, y, z;
 
-	Vector(void);
+	Vector();
 	Vector(double xpos, double ypos, double zpos) : x(xpos), y(ypos), z(zpos) {}
 
 	Vector addTo(Vector v2);
@@ -16,4 +20,5 @@ public:
 	double dotWith(Vector v2);
 	Vector crossWith(Vector v2);
 	double magnitude();
+	string toString();
 };

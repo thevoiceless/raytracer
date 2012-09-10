@@ -53,10 +53,15 @@ void read_input_file(string& filename, vector<Primitive*>& primitives)
 
 	// Initialize globals
 	viewpt = Vector(viewpoint[0], viewpoint[1], viewpoint[2]);
+	cout << "Viewpoint: " << viewpt.toString() << endl;
 	screenLowerLeftCorner = Vector(screen_lower_left_corner[0], screen_lower_left_corner[1], screen_lower_left_corner[2]);
+	cout << "Screen lower left corner: " << screenLowerLeftCorner.toString() << endl;
 	screenHorizVector = Vector(screen_horizontal_vector[0], screen_horizontal_vector[1], screen_horizontal_vector[2]);
+	cout << "Screen horizontal vector: " << screenHorizVector.toString() << endl;
 	screenVertVector = Vector(screen_vertical_vector[0], screen_vertical_vector[1], screen_vertical_vector[2]);
+	cout << "Screen vertical vector: " << screenVertVector.toString() << endl;
 	lightSource = Vector(light_source[0], light_source[1], light_source[2]);
+	cout << "Light source: " << lightSource.toString() << endl;
 
 	for(int i = 0; i < number_of_primitives; i++)
 	{
@@ -81,6 +86,8 @@ void read_input_file(string& filename, vector<Primitive*>& primitives)
 				inFile >> k_specular >> n_specular;
 
 				primitives.push_back(new Sphere(Vector(center[0], center[1], center[2]), radius, Material(k_diffuse[0], k_diffuse[1], k_diffuse[2], k_ambient[0], k_ambient[1], k_ambient[2], k_specular, n_specular)));
+				cout << "\nAdded sphere" << endl;
+				cout << dynamic_cast<Sphere*>(primitives.back())->toString() << endl;
 				numSpheres++;
 			}
 			break;
@@ -100,9 +107,11 @@ void read_input_file(string& filename, vector<Primitive*>& primitives)
 				inFile >> a3[0] >> a3[1] >> a3[2];
 				inFile >> k_diffuse[0] >> k_diffuse[1] >> k_diffuse[2];
 				inFile >> k_ambient[0] >> k_ambient[1] >> k_ambient[2];
-				inFile >> k_specular >> n_specular; 	    
+				inFile >> k_specular >> n_specular;
 
 				primitives.push_back(new Triangle(Vector(a1[0], a1[1], a1[2]), Vector(a2[0], a2[1], a2[2]), Vector(a3[0], a3[1], a3[2]), Material(k_diffuse[0], k_diffuse[1], k_diffuse[2], k_ambient[0], k_ambient[1], k_ambient[2], k_specular, n_specular)));
+				cout << "\nAdded triangle" << endl;
+				cout << dynamic_cast<Triangle*>(primitives.back())->toString() << endl;
 				numTriangles++;
 			}
 			break;
