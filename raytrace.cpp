@@ -21,68 +21,74 @@ void vectorTests();
 void sphereTests();
 bool eq(double first, double second);
 
-int main()
+int main(int argc, char *argv[])
 {
-	//tests();
+	// User did not enter a filename
+	if(argc != 2)
+	{
+		cout<<"Usage: " << argv[0] << " <filename>\n";
+		exit(0);
+	}
+	else
+	{
+		//tests();
 
-	string filename ;
-	cout << "Enter name of input file: ";
-	cin >> filename;
-	// Create vector of pointers to Primitives
-	vector<Primitive*> primitives;
-	// Load info from the input file
-	read_input_file(filename, primitives);
+		// Create vector of pointers to Primitives
+		vector<Primitive*> primitives;
+		// Load info from the input file
+		read_input_file(argv[1], primitives);
 
-	Image img(resolution_x, resolution_y);
-	for(int x = 0; x < resolution_x; x++)
-		for(int y = 0; y < resolution_y; y++)
-		{
-			double t = -1.0;
-			int primitive_id;
-			Ray r = eyeRay(x, y);
-
-			pair<double, int> result = closestIntersection(r, primitives);
-			t = result.first;
-			primitive_id = result.second;
-
-			RGB &pix = img.pixel(x, y);
-
-			// No intersection
-			if(t == -1.0)
+		Image img(resolution_x, resolution_y);
+		for(int x = 0; x < resolution_x; x++)
+			for(int y = 0; y < resolution_y; y++)
 			{
-				pix.r = 0.0;
-				pix.g = 0.0;
-				pix.b = 0.0;
-			}
-			// Intersection
-			else
-			{
-				Sphere* sphere = dynamic_cast<Sphere*>((primitives.at(primitive_id)));
-				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
-				if(sphere)
+				double t = -1.0;
+				int primitive_id;
+				Ray r = eyeRay(x, y);
+
+				pair<double, int> result = closestIntersection(r, primitives);
+				t = result.first;
+				primitive_id = result.second;
+
+				RGB &pix = img.pixel(x, y);
+
+				// No intersection
+				if(t == -1.0)
 				{
-					pix.r = sphere->material.k_diff_R * light_intensity;
-					pix.g = sphere->material.k_diff_G * light_intensity;
-					pix.b = sphere->material.k_diff_B * light_intensity;
+					pix.r = 0.0;
+					pix.g = 0.0;
+					pix.b = 0.0;
 				}
-				else if(triangle)
+				// Intersection
+				else
 				{
-					pix.r = triangle->material.k_diff_R * light_intensity;
-					pix.g = triangle->material.k_diff_G * light_intensity;
-					pix.b = triangle->material.k_diff_B * light_intensity;
+					Sphere* sphere = dynamic_cast<Sphere*>((primitives.at(primitive_id)));
+					Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
+					if(sphere)
+					{
+						pix.r = sphere->material.k_diff_R * light_intensity;
+						pix.g = sphere->material.k_diff_G * light_intensity;
+						pix.b = sphere->material.k_diff_B * light_intensity;
+					}
+					else if(triangle)
+					{
+						pix.r = triangle->material.k_diff_R * light_intensity;
+						pix.g = triangle->material.k_diff_G * light_intensity;
+						pix.b = triangle->material.k_diff_B * light_intensity;
+					}
 				}
+
+				// this is just to produce a fun image...
+				//pix.r = 0.5 + 0.5 * sin(sin(x / 30.0) + y * (y / 700.0));
+				//pix.g = 0.5 + 0.5 * sin(y / 71.0);
+				//pix.b = 0.5 + 0.5 * sin(x * x * (x / 120000.0) + y * (y / 1700.0));
 			}
 
-			// this is just to produce a fun image...
-			//pix.r = 0.5 + 0.5 * sin(sin(x / 30.0) + y * (y / 700.0));
-			//pix.g = 0.5 + 0.5 * sin(y / 71.0);
-			//pix.b = 0.5 + 0.5 * sin(x * x * (x / 120000.0) + y * (y / 1700.0));
-		}
+		// Save the image
+		save_to_ppm_file(img, "output.ppm");
 
-	// Save the image
-	save_to_ppm_file(img, "output.ppm");
-
-	return 0;
+		return 0;
+	}
 }
 
 void tests()

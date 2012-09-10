@@ -28,10 +28,10 @@ unsigned char clampnround(double x)
 	return (unsigned char)floor(x + .5);
 }
 
-void read_input_file(string& filename, vector<Primitive*>& primitives)
+void read_input_file(char* filename, vector<Primitive*>& primitives)
 {
 	// Open the input file
-	ifstream inFile(filename.c_str());
+	ifstream inFile(filename);
 	assert(inFile);
 
 	// Keep track of the number of primitives that are added
