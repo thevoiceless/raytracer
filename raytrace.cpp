@@ -94,9 +94,9 @@ int main(int argc, char *argv[])
 	save_to_ppm_file(img, "output.ppm");
 
 	// Only used to make the output filename match the name of the input file
-	//string outFileName = filename.substr(0, filename.length() - 4);
-	//outFileName.append(".ppm");
-	//save_to_ppm_file(img, outFileName);
+	// string outFileName = filename.substr(0, filename.length() - 4);
+	// outFileName.append(".ppm");
+	// save_to_ppm_file(img, outFileName);
 
 	return 0;
 }
