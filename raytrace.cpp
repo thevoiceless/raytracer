@@ -16,10 +16,6 @@ CSCI 441
 
 using namespace std;
 
-Vector getViewVector(Vector point);
-Vector getLightVector(Vector point);
-Vector normalize(Vector v);
-
 void tests();
 void vectorTests();
 void sphereTests();
@@ -80,15 +76,20 @@ int main(int argc, char *argv[])
 				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
 				if(sphere)
 				{
+					Vector n = sphere->normal(intersection_point);
+
+					illumination();
+
 					pix.r = sphere->material.k_diff_R * light_intensity;
 					pix.g = sphere->material.k_diff_G * light_intensity;
 					pix.b = sphere->material.k_diff_B * light_intensity;
 				}
 				else if(triangle)
 				{
-					pix.r = triangle->material.k_diff_R * light_intensity;
-					pix.g = triangle->material.k_diff_G * light_intensity;
-					pix.b = triangle->material.k_diff_B * light_intensity;
+					Vector colors = triangle->illumination(intersection_point);
+					pix.r = colors.x;
+					pix.g = colors.y;
+					pix.b = colors.z;
 				}
 			}
 
@@ -109,22 +110,9 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-// Vector from the intersection point to the viewpoint
-Vector getViewVector(Vector point)
+Vector illumination(Vector point)
 {
-	return normalize(viewpt.minus(point));
-}
 
-// Vector from the intersection point to the light source
-Vector getLightVector(Vector point)
-{
-	return normalize(lightSource.minus(point));
-}
-
-Vector normalize(Vector v)
-{
-	double mag = v.magnitude();
-	return Vector((v.x / mag), (v.y / mag), (v.z / mag));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

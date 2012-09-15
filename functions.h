@@ -31,3 +31,15 @@ Ray eyeRay(int i, int j)
 	return Ray(viewpt, 
 		screenLowerLeftCorner.addTo(screenHorizVector.scaleBy((i + 0.5) / resolution_x).addTo(screenVertVector.scaleBy((j + 0.5) / resolution_y))).minus(viewpt));
 }
+
+// Vector from the intersection point to the viewpoint
+Vector viewVector(Vector point)
+{
+	return (viewpt.minus(point)).normalize();
+}
+
+// Vector from the intersection point to the light source
+Vector lightVector(Vector point)
+{
+	return (lightSource.minus(point)).normalize();
+}

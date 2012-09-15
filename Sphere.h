@@ -18,5 +18,6 @@ public:
 
 	double intersection(Ray& ray);
 	Vector normal(Vector& intersection_point);
+	Vector illumination(Vector& intersection_point);
 	string toString();
 };

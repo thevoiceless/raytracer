@@ -20,5 +20,6 @@ public:
 	double dotWith(Vector v2);
 	Vector crossWith(Vector v2);
 	double magnitude();
+	Vector normalize();
 	string toString();
 };

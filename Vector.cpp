@@ -57,6 +57,12 @@ double Vector::magnitude()
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
 
+Vector Vector::normalize()
+{
+	double mag = this->magnitude();
+	return Vector((x / mag), (y / mag), (z / mag));
+}
+
 string Vector::toString()
 {
 	stringstream ss;

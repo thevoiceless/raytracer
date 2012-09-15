@@ -98,6 +98,44 @@ Vector Triangle::normal(Vector& intersection_point)
 	return n0.scaleBy(-1.0);
 }
 
+// Vector illumination ( Vector p )
+// n := normal(p);
+// if (n · (b - p)) < 0 then p in shadow of its primitive
+//   return the value of the Ambient term
+// else
+//   N:= normalize(n);
+//   L:= lightVector(p);
+//   V:= viewVector(p);
+//   return value of the illumination formula:
+//     I_total = I * (k_d * (N · L) + k_s * (H · N)^n) + k_a * I_a
+Vector Triangle::illumination(Vector& intersection_point)
+{
+	Vector n = this->normal(intersection_point);
+	// Intersection point is in the shadow of its primitive
+	if(n.dotWith(lightSource.minus(intersection_point)) < 0)
+	{
+		return Vector(this->material.k_ambient_R,
+			this->material.k_ambient_G,
+			this->material.k_ambient_B);
+	}
+	else
+	{
+		Vector N = n.normalize();
+		Vector L = lightVector(intersection_point);
+		Vector V = viewVector(intersection_point);
+		Vector H = (V.addTo(L)).scaleBy(1 / (V.addTo(L)).magnitude());
+
+		double Itotal_red, Itotal_green, Itotal_blue;
+		double NdotL = N.dotWith(L);
+		double HdotN = pow(H.dotWith(N), this->material.n_spec);
+		Itotal_red = (light_intensity * ((this->material.k_diff_R * NdotL) + (this->material.k_spec * HdotN))) + (this->material.k_ambient_R * ambient_light_intensity);
+		Itotal_green = (light_intensity * ((this->material.k_diff_G * NdotL) + (this->material.k_spec * HdotN))) + (this->material.k_ambient_G * ambient_light_intensity);
+		Itotal_blue = (light_intensity * ((this->material.k_diff_B * NdotL) + (this->material.k_spec * HdotN))) + (this->material.k_ambient_B * ambient_light_intensity);
+
+		return Vector(Itotal_red, Itotal_green, Itotal_blue);
+	}
+}
+
 string Triangle::toString()
 {
 	stringstream ss;
