@@ -1,0 +1,3 @@
+Project 1, Report 2
+
+I had to refer back to the slides for this, but it was pretty easy to implement. I had some issues passing global variables around, which serves me right for using global variables in the first place. I made an error in my first attempt that caused spheres to be half shadowed and half lit, because I was returning only the ambient light values if a point was in the shadow of its own primitive. Other than that, everything is working as it should. Unfortunately, it's still slow. I played around with trying to pass things by reference, especially in my Vector operations, but the fact that I chain my functions together created a ton of issues and it would be way too much work to go back and change everything.
