@@ -27,16 +27,23 @@ int main(int argc, char *argv[])
 	vector<Primitive*> primitives;
 	// Input file
 	string filename = "input.txt";
+	// Set to "true" to name the output PPM based on the name of the input file
+	// Set to "fase" if a name is provided as a command-line argument
+	bool useInputFileName;
+	string outFileName = "output.ppm";
 
-	// User did not enter a filename as a command-line argument
+	// User did provide command-line arguments
 	if(argc != 2)
 	{
 		// Load info from "input.txt"
 		read_input_file((char*)filename.c_str(), primitives);
+		useInputFileName = false;
 	}
-	// User passed a filename as a command-line argument
+	// User passed command-line arguments
 	else
 	{
+		// If a file name is provided, use the same name for the output file
+		useInputFileName = true;
 		// Load info from the named input file
 		filename = argv[1];
 		read_input_file(argv[1], primitives);
@@ -94,13 +101,18 @@ int main(int argc, char *argv[])
 			//pix.b = 0.5 + 0.5 * sin(x * x * (x / 120000.0) + y * (y / 1700.0));
 		}
 
-	// Save the image
-	save_to_ppm_file(img, "output.ppm");
-
-	// Only used to make the output filename match the name of the input file
-	// string outFileName = filename.substr(0, filename.length() - 4);
-	// outFileName.append(".ppm");
-	// save_to_ppm_file(img, outFileName);
+	// Save the image to "output.ppm"
+	if(!useInputFileName)
+	{
+		save_to_ppm_file(img, outFileName);
+	}
+	// Save with the same name as the input file
+	else
+	{
+		outFileName = filename.substr(0, filename.length() - 4);
+		outFileName.append(".ppm");
+		save_to_ppm_file(img, outFileName);
+	}
 
 	return 0;
 }
