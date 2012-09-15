@@ -76,14 +76,14 @@ int main(int argc, char *argv[])
 				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
 				if(sphere)
 				{
-					Vector colors = sphere->illumination(intersection_point);
-					pix.r = colors.x
+					Vector colors = sphere->illumination(intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
+					pix.r = colors.x;
 					pix.g = colors.y;
 					pix.b = colors.z;
 				}
 				else if(triangle)
 				{
-					Vector colors = triangle->illumination(intersection_point);
+					Vector colors = triangle->illumination(intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
 					pix.r = colors.x;
 					pix.g = colors.y;
 					pix.b = colors.z;

@@ -5,8 +5,6 @@
 #include "Material.h"
 #include "Ray.h"
 #include "Primitive.h"
-#include "globals.h"
-#include "functions.h"
 #pragma once
 
 class Sphere: public Primitive
@@ -20,6 +18,6 @@ public:
 
 	double intersection(Ray& ray);
 	Vector normal(Vector& intersection_point);
-	Vector illumination(Vector& intersection_point);
+	Vector illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity);
 	string toString();
 };

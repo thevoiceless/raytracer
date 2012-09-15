@@ -97,21 +97,21 @@ Vector Sphere::normal(Vector& intersection_point)
 //   V:= viewVector(p);
 //   return value of the illumination formula:
 //     I_total = I * (k_d * (N · L) + k_s * (H · N)^n) + k_a * I_a
-Vector Sphere::illumination(Vector& intersection_point)
+Vector Sphere::illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity)
 {
 	Vector n = this->normal(intersection_point);
 	// Intersection point is in the shadow of its primitive
 	if(n.dotWith(lightSource.minus(intersection_point)) < 0)
 	{
-		return Vector(this->material.k_ambient_R,
-			this->material.k_ambient_G,
-			this->material.k_ambient_B);
+		return Vector((this->material.k_ambient_R * ambient_light_intensity),
+			this->material.k_ambient_G * ambient_light_intensity,
+			this->material.k_ambient_B * ambient_light_intensity);
 	}
 	else
 	{
 		Vector N = n.normalize();
-		Vector L = lightVector(intersection_point);
-		Vector V = viewVector(intersection_point);
+		Vector L = (lightSource.minus(intersection_point)).normalize();
+		Vector V = (viewpt.minus(intersection_point)).normalize();
 		Vector H = (V.addTo(L)).scaleBy(1 / (V.addTo(L)).magnitude());
 
 		double Itotal_red, Itotal_green, Itotal_blue;

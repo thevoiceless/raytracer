@@ -5,8 +5,6 @@
 #include "Material.h"
 #include "Ray.h"
 #include "Primitive.h"
-#include "globals.h"
-#include "functions.h"
 #pragma once
 
 class Triangle: public Primitive
@@ -18,7 +16,7 @@ public:
 	Triangle(Vector one, Vector two, Vector three, Material m) : a1(one), a2(two), a3(three), material(m) {}
 
 	double intersection(Ray& ray);
-	Vector normal(Vector& intersection_point);
-	Vector illumination(Vector& intersection_point);
+	Vector normal(Vector& intersection_point, Vector& viewpt);
+	Vector illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity);
 	string toString();
 };
