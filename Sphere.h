@@ -17,5 +17,6 @@ public:
 	Sphere(Vector c, double r, Material m) : center(c), radius(r), material(m) {}
 
 	double intersection(Ray& ray);
+	Vector normal();
 	string toString();
 };

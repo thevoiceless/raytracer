@@ -84,6 +84,20 @@ double Triangle::intersection(Ray& ray)
 	}
 }
 
+// Triangle case
+// n0 = (a3 - a1) × (a2 - a1)
+// Check if n0 points to the side containing viewpoint; if not, negate n0
+// if n0 · (viewpoint - a1) >= 0 then return n0, else return -n0
+Vector Triangle::normal()
+{
+	Vector n0 = ((a3.minus(a1)).crossWith((a2.minus(a1))));
+	if(n0.dotWith(viewpt.minus(a1)) >= 0)
+	{
+		return n0;
+	}
+	return n0.scaleBy(-1.0);
+}
+
 string Triangle::toString()
 {
 	stringstream ss;

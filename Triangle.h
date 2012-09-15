@@ -15,5 +15,6 @@ public:
 	Triangle(Vector one, Vector two, Vector three, Material m) : a1(one), a2(two), a3(three), material(m) {}
 
 	double intersection(Ray& ray);
+	Vector normal();
 	string toString();
 };
