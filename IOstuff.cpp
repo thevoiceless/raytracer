@@ -5,6 +5,7 @@ void save_to_ppm_file(Image& theImage, string filename)
 {
 	ofstream outFile(filename.c_str(), ios::binary);
 	assert(outFile);
+	cout << "Saving to " << filename << "..." << endl;
 	outFile << "P6" << endl;
 	outFile << theImage.xsize << " " << theImage.ysize << endl << 255 << endl;
 	for(int i = 0; i < theImage.xsize * theImage.ysize; i++)
@@ -17,6 +18,7 @@ void save_to_ppm_file(Image& theImage, string filename)
 		outFile.write((char*)&b, sizeof(char));
 	}
 	outFile.close();
+	cout << "Done." << endl;
 }
 
 unsigned char clampnround(double x)
@@ -33,6 +35,7 @@ void read_input_file(char* filename, vector<Primitive*>& primitives)
 	// Open the input file
 	ifstream inFile(filename);
 	assert(inFile);
+	cout << "\n" << filename << ":" << endl;
 
 	// Keep track of the number of primitives that are added
 	int numSpheres = 0;

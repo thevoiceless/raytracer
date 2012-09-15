@@ -16,11 +16,6 @@ CSCI 441
 
 using namespace std;
 
-void tests();
-void vectorTests();
-void sphereTests();
-bool eq(double first, double second);
-
 int main(int argc, char *argv[])
 {
 	// Create vector of pointers to Primitives
@@ -49,6 +44,7 @@ int main(int argc, char *argv[])
 		read_input_file(argv[1], primitives);
 	}
 
+	cout << "Running..." << endl;
 	Image img(resolution_x, resolution_y);
 	for(int x = 0; x < resolution_x; x++)
 		for(int y = 0; y < resolution_y; y++)

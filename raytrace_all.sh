@@ -1,5 +1,9 @@
 #!/bin/bash
 
+make
+
+cp ../testdata/*.txt .
+
 ./raytrace test1.txt
 ./raytrace test2.txt
 ./raytrace test3.txt
@@ -19,3 +23,5 @@
 ./raytrace test17.txt
 ./raytrace test18.txt
 ./raytrace test19.txt
+
+rm test*.txt
