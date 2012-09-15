@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
 			// Intersection
 			else
 			{
+				// p = o + td
+				Vector intersection_point = r.origin.addTo(r.direction.scaleBy(t));
+
+				// Determine if the intersection was with a sphere or triangle
 				Sphere* sphere = dynamic_cast<Sphere*>((primitives.at(primitive_id)));
 				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
 				if(sphere)

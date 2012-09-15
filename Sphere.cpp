@@ -80,6 +80,13 @@ double Sphere::intersection(Ray& ray)
 	}
 }
 
+// Sphere case
+// return p - center
+Vector Sphere::normal(Vector& intersection_point)
+{
+	return intersection_point.minus(center);
+}
+
 string Sphere::toString()
 {
 	stringstream ss;

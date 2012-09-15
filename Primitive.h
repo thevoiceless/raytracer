@@ -6,5 +6,5 @@ class Primitive
 {
 public:
 	virtual double intersection(Ray& r) = 0;
-	virtual Vector normal() = 0;
+	virtual Vector normal(Vector& intersection_point) = 0;
 };
