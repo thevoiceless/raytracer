@@ -16,6 +16,10 @@ CSCI 441
 
 using namespace std;
 
+Vector getViewVector(Vector point);
+Vector getLightVector(Vector point);
+Vector normalize(Vector v);
+
 void tests();
 void vectorTests();
 void sphereTests();
@@ -104,6 +108,26 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
+
+// Vector from the intersection point to the viewpoint
+Vector getViewVector(Vector point)
+{
+	return normalize(viewpt.minus(point));
+}
+
+// Vector from the intersection point to the light source
+Vector getLightVector(Vector point)
+{
+	return normalize(lightSource.minus(point));
+}
+
+Vector normalize(Vector v)
+{
+	double mag = v.magnitude();
+	return Vector((v.x / mag), (v.y / mag), (v.z / mag));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 void tests()
 {
