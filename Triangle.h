@@ -6,6 +6,7 @@
 #include "Ray.h"
 #include "Primitive.h"
 #include "globals.h"
+#include "functions.h"
 #pragma once
 
 class Triangle: public Primitive

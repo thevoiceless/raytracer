@@ -5,6 +5,8 @@
 #include "Material.h"
 #include "Ray.h"
 #include "Primitive.h"
+#include "globals.h"
+#include "functions.h"
 #pragma once
 
 class Sphere: public Primitive
