@@ -6,5 +6,5 @@ class Primitive
 {
 public:
 	virtual double intersection(Ray& r) = 0;
-	virtual Vector illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity) = 0;
+	virtual Vector illumination(bool inShadow, Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity) = 0;
 };

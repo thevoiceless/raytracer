@@ -108,11 +108,11 @@ Vector Triangle::normal(Vector& intersection_point, Vector& viewpt)
 //   V:= viewVector(p);
 //   return value of the illumination formula:
 //     I_total = I * (k_d * (N · L) + k_s * (H · N)^n) + k_a * I_a
-Vector Triangle::illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity)
+Vector Triangle::illumination(bool inShadow, Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity)
 {
 	Vector n = this->normal(intersection_point, viewpt);
 	// Intersection point is in the shadow of its primitive
-	if(n.dotWith(lightSource.minus(intersection_point)) < 0)
+	if(n.dotWith(lightSource.minus(intersection_point)) < 0 || inShadow)
 	{
 		return Vector(this->material.k_ambient_R * ambient_light_intensity,
 			this->material.k_ambient_G * ambient_light_intensity,

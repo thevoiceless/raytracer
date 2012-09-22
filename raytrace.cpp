@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		read_input_file(argv[1], primitives);
 	}
 
-	cout << "Running..." << endl;
+	cout << "Running (Warning: It's slow!)..." << endl;
 	Image img(resolution_x, resolution_y);
 	for(int x = 0; x < resolution_x; x++)
 		for(int y = 0; y < resolution_y; y++)
@@ -77,16 +77,18 @@ int main(int argc, char *argv[])
 				// Determine if the intersection was with a sphere or triangle
 				Sphere* sphere = dynamic_cast<Sphere*>((primitives.at(primitive_id)));
 				Triangle* triangle = dynamic_cast<Triangle*>((primitives.at(primitive_id)));
+				// In shadow?
+				bool inShadow = isInShadow(primitives, intersection_point, primitive_id);
 				if(sphere)
 				{
-					Vector colors = sphere->illumination(intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
+					Vector colors = sphere->illumination(inShadow, intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
 					pix.r = colors.x;
 					pix.g = colors.y;
 					pix.b = colors.z;
 				}
 				else if(triangle)
 				{
-					Vector colors = triangle->illumination(intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
+					Vector colors = triangle->illumination(inShadow, intersection_point, viewpt, lightSource, light_intensity, ambient_light_intensity);
 					pix.r = colors.x;
 					pix.g = colors.y;
 					pix.b = colors.z;
@@ -115,12 +117,12 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-// bool IsInShadow(Vector p)
+// bool IsInShadow(primitives, p, pid)
 // Shadow ray = (origin = p, direction = b - p)
-// for i = 0 to n_T + n_S do:
+// for i = 0 to primitives.size do:
 //   if i != pid then
-//      // don't want to use primitive containing p...
-//      t = intersection(r,i);
+//      // Don't want to use primitive containing p
+//      t = closestIntersection(shadow ray, primitives, pid);
 //      if t >= 0 and t <= 1 then return true;
 //   endif
 // endfor 
@@ -132,12 +134,11 @@ bool isInShadow(vector<Primitive*>& primitives, Vector& intersection_point, int 
 	{
 		if(i != primitive_id)
 		{
-			pair<double, int> result = closestIntersection(shadowRay, primitives);
+			pair<double, int> result = closestIntersection(shadowRay, primitives, primitive_id);
 			if(result.first >= 0 && result.first <= 1)
 			{
 				return true;
 			}
-
 		}
 	}
 	return false;

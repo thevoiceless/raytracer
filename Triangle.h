@@ -17,6 +17,6 @@ public:
 
 	double intersection(Ray& ray);
 	Vector normal(Vector& intersection_point, Vector& viewpt);
-	Vector illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity);
+	Vector illumination(bool inShadow, Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity);
 	string toString();
 };

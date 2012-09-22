@@ -8,13 +8,17 @@
 
 using namespace std;
 
-// Compute closest intersection point with the given ray
-pair<double, int> closestIntersection(Ray& r, vector<Primitive*>& primitives)
+// Compute closest intersection point with the given ray, optionally ignoring a given primitive
+pair<double, int> closestIntersection(Ray& r, vector<Primitive*>& primitives, int ignore_index = -1)
 {
 	double min_t = -1.0;
 	int primitive_id = 0;
 	for(int i = 0; i < primitives.size(); ++i)
 	{
+		if(i == ignore_index)
+		{
+			continue;
+		}
 		double t = primitives.at(i)->intersection(r);
 		if(t != -1.0 && (min_t == -1 || t < min_t))
 		{
