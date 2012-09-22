@@ -16,6 +16,8 @@ CSCI 441
 
 using namespace std;
 
+bool isInShadow(vector<Primitive*>& primitives, Vector& intersection_point, int primitive_id);
+
 int main(int argc, char *argv[])
 {
 	// Create vector of pointers to Primitives
@@ -111,4 +113,32 @@ int main(int argc, char *argv[])
 	}
 
 	return 0;
+}
+
+// bool IsInShadow(Vector p)
+// Shadow ray = (origin = p, direction = b - p)
+// for i = 0 to n_T + n_S do:
+//   if i != pid then
+//      // don't want to use primitive containing p...
+//      t = intersection(r,i);
+//      if t >= 0 and t <= 1 then return true;
+//   endif
+// endfor 
+// return false;
+bool isInShadow(vector<Primitive*>& primitives, Vector& intersection_point, int primitive_id)
+{
+	Ray shadowRay(intersection_point, lightSource.minus(intersection_point));
+	for(int i = 0; i < primitives.size(); i++)
+	{
+		if(i != primitive_id)
+		{
+			pair<double, int> result = closestIntersection(shadowRay, primitives);
+			if(result.first >= 0 && result.first <= 1)
+			{
+				return true;
+			}
+
+		}
+	}
+	return false;
 }

@@ -87,14 +87,14 @@ Vector Sphere::normal(Vector& intersection_point)
 	return intersection_point.minus(center);
 }
 
-// Vector illumination ( Vector p )
-// n := normal(p);
+// Vector illumination(Vector p)
+// n = normal(p);
 // if (n · (b - p)) < 0 then p in shadow of its primitive
 //   return the value of the Ambient term
 // else
-//   N:= normalize(n);
-//   L:= lightVector(p);
-//   V:= viewVector(p);
+//   N = normalize(n);
+//   L = lightVector(p);
+//   V = viewVector(p);
 //   return value of the illumination formula:
 //     I_total = I * (k_d * (N · L) + k_s * (H · N)^n) + k_a * I_a
 Vector Sphere::illumination(Vector& intersection_point, Vector& viewpt, Vector& lightSource, double light_intensity, double ambient_light_intensity)
