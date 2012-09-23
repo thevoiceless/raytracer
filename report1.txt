@@ -1,3 +1,0 @@
-Project 1, Report 1
-
-Everything is proceeding as it should. Information is correctly read from the input file, primitives are created and saved, and the intersection routines return the correct results. The only downside I've found in my implementation is that it is slow. I'll probably look into ways to speed it up.
