@@ -26,13 +26,13 @@ The input ﬁles are designed so that the intensity of a pixel should never exce
 
 Thus, starting portion of the ﬁle will look like this:
 
-m n
-ex ey ez
-lx ly lz
-hx hy hz
-vx vy vz
-bx by bz I
-Ia
+m n  
+ex ey ez  
+lx ly lz  
+hx hy hz  
+vx vy vz  
+bx by bz I  
+Ia  
 N
 
 Then, there will follow the description of the primitives. For a triangle, we will have:
