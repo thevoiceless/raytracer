@@ -9,7 +9,6 @@ There are two ways to run the raytracer:
 2.  Run "./raytrace input_file_name" where "input_file_name" is the full (including the file extension) name of a file in the current directory to use as input.
 
 ## Input File Format
-
 The input ﬁle will specify the view, window size, light source and the primitives (triangles and spheres), in the following order:
 
 1. The desired resolution of the output image (two integers, m and n if the output is to be m × n)
@@ -49,6 +48,10 @@ And for a sphere:
 S
 cx cy cz r
 kdr kdg kdb kar kag kab ks nspec
+
+## Output
+
+If an input file is passed as a command-line argument, a PPM file with a matching name is created. If no input file is specified, the resulting file is just named "output.ppm".
 
 ## Notes
 This raytracer is extremely slow. Seriously. Everything is done with the CPU, and the code itself is very inefficient (but works). I might go back at some point and clean it up (like passing all objects by reference), or I might not. 
