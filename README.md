@@ -24,7 +24,7 @@ For a sphere, the next line contains the coordinates of the center and the radiu
 For a triangle, the next three lines contain the coordinates of each of the three vertices (9 ﬂoats). The fourth line contains the material properties in the same format as for spheres.
 The input ﬁles are designed so that the intensity of a pixel should never exceed 1 (except possibly for a tiny amount due to numerical error).
 
-Thus, starting portion of the ﬁle will look like this:
+Thus, the starting portion of the ﬁle will look like this:
 
 m n  
 ex ey ez  
@@ -35,18 +35,18 @@ bx by bz I
 Ia  
 N
 
-Then, there will follow the description of the primitives. For a triangle, we will have:
+Then come the primitives. For a sphere:
+
+S  
+cx cy cz r  
+kdr kdg kdb kar kag kab ks nspec
+
+And for a triangle:
 
 T  
 a1x a1y a1z  
 a2x a2y a2z  
 a3x a3y a3z  
-kdr kdg kdb kar kag kab ks nspec
-
-And for a sphere:
-
-S  
-cx cy cz r  
 kdr kdg kdb kar kag kab ks nspec
 
 ## Output
